@@ -18,8 +18,8 @@ socket.on('connect', function() {
 
 
     socket.emit('entrarChat', usuario, function(resp) {
-
-        console.log('Usuarios conectados', resp);
+        renderizarUsuarios(resp);
+        // console.log('Usuarios conectados', resp);
     })
 });
 
@@ -41,13 +41,15 @@ socket.on('disconnect', function() {
 
 // Escuchar información
 socket.on('crearMensaje', function(mensaje) {
-    console.log('Servidor:', mensaje);
+    renderizarMensajes(mensaje, false);
+    scrollBottom();
+    // console.log('Servidor:', mensaje);
 });
 
 
 //Escuchar cambios en los usuarios
 socket.on('listaPersonas', function(usuarios) {
-    console.log(usuarios);
+    renderizarUsuarios(usuarios);
 });
 
 
